@@ -1,0 +1,36 @@
+\begin{savequote}[8cm]
+
+If you wana be on the bleedin' edge you gotta bleed
+  \qauthor{---- Adam Packer}
+\end{savequote}
+
+\chapter{\label{ch:3-One-photon_training}One-photon training} 
+
+\minitoc
+
+\section{Animal usage}
+
+Initially, mice learned the association between optogenetic stimulation and reward through Pavlovian conditioning in which the stimulus was paired with reward regardless of the animal's response. Trials that were automatically rewarded are herein termed 'auto-reward' trials. Trials were initiated after the mice had withheld licking for a 4-6 second interval (pseudo-randomly sampled to prevent repeated temporal structure to the task). Each trial contained a 2 s window during which the licking behaviour defined the trial outcome. A 5 second inter-trial interval was used. Training consisted of two trial types: go and catch. In go trials, LED stimulation was delivered and the mouse was required to lick, the trial outcome recorded as 'hit' if the mouse licked and 'miss' if the mouse failed to lick in the 2 s response window. A reward was delivered immediately after a correct lick on hit trials and at the end of the 2 s response window in missed auto-rewarded trials. Miss trials were not rewarded unless the mouse was in the initial Pavlovian auto-reward phase. Catch trials were unrewarded and no stimulus was delivered. Licking in the response window during a catch trial was scored as a 'false alarm' whereas withholding licking was scored as a 'correct rejection'. This behaviour can thus be considered a detection task where catch trials are used to report the animal's baseline licking probability. Trial type was selected pseudorandomly ensuring no more than 3 consecutive trials of the same type. Mice were transitioned out of the Pavlovian auto-reward phase when they scored three consecutive hit trials - licking before the auto-reward was delivered. 
+
+During the active phase  of training, defined as the absence of auto-rewards, behavioural performance was quantified using the d' metric \citep{Brophy1986}:
+
+\begin{equation}
+d' = z(\text{hit rate}) - z(\text{false alarm rate})
+\end{equation}
+
+where: $z$ is the Z-transform function
+
+The pyControl framework runs micropython, a lower level form of python compared to that available on a desktop computer and without any scientific packages. Hence, to perform calculation of d' online directly on the microcontroller, the Z-transforms of the hit and false alarm rates were calculated using a Pad\'e approximant:
+
+\begin{equation} \label{eq:pade}
+ R_{4,4} = \frac{\sqrt{2\pi}(P - \frac{1}{2}) - \frac{157}{231}\sqrt{2}\pi^{3/2}(P - \frac{1}{2})^{3}}{1-\frac{78}{77}\pi(p-\frac{1}{2})^{2} + \frac{241\pi^{2}}{2310}(p - \frac{1}{2})^{4}}
+\end{equation}
+
+where: $R_{4,4}$ is the 4th order Pad\'e approximation of the Z-transform and $P$ is the hit or miss rate.
+
+Once a mouse had achieved high level task performance (defined here as d' > 2) with the highest LED power (10 mW), the LED power was automatically reduced in a stepwise fashion until the lowest power was reached (0.1 mW). All opsin expressing mice reached the lowest power level within 3 training sessions. Once animals had reached d' > 2 at 0.1 mW, they were transitioned to psychometric curve sessions to assess detection threshold. 
+
+
+
+
+

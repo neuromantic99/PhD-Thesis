@@ -1,0 +1,164 @@
+\begin{savequote}[8cm]
+
+If you wana be on the bleedin' edge you gotta bleed 
+  \qauthor{--- Adam Packer}
+\end{savequote}
+
+\chapter{\label{ch:2-Materials and Methods}Materials and Methods} 
+
+\minitoc
+
+\section{Animal usage}
+
+All experimental procedures involving animals were conducted in accordance with the UK animals in Scientific Procedures Act (1986).
+
+Male and female C57/BL6 and Tg(tetO-GCaMP6s)2Niell mice were used for all experiments. Mice were between 4-12 weeks of age when surgery was performed.
+
+\section{Surgical Procedures}
+Animals were anaesthetised with isoflurane (5\% for induction, 1.5\% for maintenance) during all surgical procedures. A perioperative injection of 0.1 mg/kg buprenorphine (Vetergesic), 5 mg/kg meloxicam (Metacam) was administered. Mice were prepared for chronic imaging experiments through a single surgery. 2 mg/kg Bupivacaine (Marcaine) was applied to the scalp before it was sterilised with chlorhexidine gluconate and isopropyl alcohol (ChloraPrep) before being removed bilaterally. The skull was cleaned with a bone scraper (Fine Science Tools) to remove the periosteum. An aluminium head-plate with a 7 mm imaging well was bonded to the skull using dental cement (Super-Bond C\&B, Sun-Medical). A 3 mm circular craniotomy was drilled over the right somatosensory cortex, targeting the S1/S2 border (-1.9 mm posterior, +3.8 mm lateral), using a dental drill (NSK UK Ltd.). The skull within the craniotomy was soaked in saline before removal. Any blood was flushed with saline for >5 minutes, before a durotomy was performed. A single 1 μl viral injection was performed using a calibrated injection pipette bevelled to a sharp point. Injections were performed at a rate of 100 nl / minute at 300 μm below the pial surface and were controlled using a hydraulic micromanipulator (Narishige). 
+
+ The majority of mice included in this work, and all those for which behavioural training was conducted, expressed the opsin C1V1-Kv2.1. To prepare these mice, pipettes were front loaded with either: 1:10 GCaMP6s (AAV1-Syn.GCaMP6s.WPRE.SV40) diluted in C1V1-Kv2.1 (AAV9-CamKIIa-C1V1(t/t)-mScarlet-KV2.1) if injecting into C57/BL6 mice or C1V1-Kv2.1 alone if injecting into transgenic mice. Some mice, used only for calibration of the two-photon photostimulation system, were injected with 1:10 GCaMP7s (AAV1-Syn-jGCaMP7s-WPRE), 1:7 ST-ChroME(AAV9-CAG-DIO-ST-ChroME-P2A-H2B-mRuby3) and 1:7 cre (AAV1-hSyn-Cre-WPRE-hGH), diluted in sterile PBS.
+
+After injection, a double tiered cranial window composed of a 4 mm circular coverslip glued to a 3 mm circular coverslip was pressed into the craniotomy and sealed with cyanoacrylate (VetBond) and dental cement. Mice were recovered in a heated recovery chamber and kept under observation until behaving normally. Mice were subsequently monitored and their weight recorded for 7 days following surgery. Mice were allowed to recover for at least 21 days with ad libitum access to food and water before further procedures. This also allowed viral expression to ramp up before behavioural training was commenced.
+
+\section{Two-photon imaging}
+Two-photon imaging was performed using a resonant scanning microscope (2PPlus, Bruker Corporation) which raster scanned a femtosecond pulsed, dispersion-corrected laser beam (Vision-S, Coherent) across the sample at 30 Hz. A 16x/0.8-NA water immersion objective lens (Nikon) was used. GCaMP and mScarlet were imaged using a 920 nm and 765 nm beam respectively. Power on sample was controlled using a Pockels cell (Conoptics) and was kept at 50 mW for all experiments. A rectangular field of view (1024 x 514 pixels, 1397.4 x 701.4 μm), was used to image across two brain regions at 30 Hz. Imaging was controlled through PrairieView (Bruker Corporation).
+
+\section{Widefield imaging}
+
+Whisker stimulation during widefield calcium imaging was used to: target virus/tracer injections, determine the viability of a preparation for continued experimentation and find a suitable field of view for two-photon imaging encompassing S1 and S2 responses to a single whisker deflection. Using a camera, an LED and a dichroic/filter set, the whole cranial window was imaged using epifluorescence to measure calcium responses to whisker deflections. Each one of four whiskers (B1-B3 and C2; one at a time) was threaded into a capillary and deflected for 10 trials of 1 second each with 10 second inter-trial intervals. Each stimulation was 10 Hz and of ~300 um in amplitude at ~500 um from the base of the follicle. Responses to whisker stimulation were assessed using dFF stimulus triggered averages based on a baseline of 1 second pre-stimulus. Two areas of response moved stereotypically anterior-posterior and medial-lateral according to the row and column of the whiskers stimulated, confirming whisker responses were being assessed.
+
+\section{Two-photon optogenetic stimulation}
+
+Two-photon optogenetic stimulation was conducted using a pulsed fixed-wavelength fibre laser at either 1030 nm (Satsuma HP2, Amplitude Systèmes) or 1035 nm (Monaco, Coherent) at a repetition rate of 2 MHz. Multiple individual neurons were targeted for stimulation simultaneously by splitting the laser beam using a reflective spatial light modulator (SLM) (7.68 x 7.68 mm active area, 512 x 512 pixels, Boulder Nonlinear Systems). The active area of the SLM was overfilled and the polarisation optimised for maximal first order diffraction efficiency using a half-wave plate. The zero order diffraction beam was blocked using a well bored into an optical flat using a dental drill (NSK UK Ltd).
+
+Phase masks were loaded onto the SLM using the blink SDK (Medowlark Optics). Phase masks were computed by applying the Gerschberg-Saxton algorithm \cite{gerchberg_practical_1972} to the xy coordinates of the target cell bodies. A weighted form of this algorithm was used to ensure uniform power distribution across all cells as the first order diffraction efficiency of the SLM is reduced with increasing distance from the zero order location. An image of the SLM was relayed onto a pair of galvanometer mirrors (Bruker Corporation) integrated into the two-photon imaging system. The galvanometer mirrors were programmed to generate spirals across cell somata by moving each beamlet simultaneously. Neurons were stimulated using 10 x 25 ms spirals of 15 \textmu m diameter and 6 mW power.
+
+The affine transformation required to map coordinates from SLM space to imaging space was computed through a custom-modified version of open-source software written in MATLAB (github.com/llerussell/Naparm) using the two-photon image created by burning arbitrary patterns into a fluorescent plastic slide. Phase masks and galvanometer voltages required to perform photostimulation were generated using Naparm \cite{russell_influence_2019}. Voltages were applied to the galvanometers using PrairieView (Bruker Corporation). Custom written Python code was used to: select the cells for photostimulation, interface with Naparm to generate the files required to perform stimulation, interface with PrairieView to load voltage onto galvanometers and trigger photostimulation based on behavioural cues. A USB data acquisition card (National Instruments) running PACKIO \cite{watson_packio_2016}, was used as a master synchroniser to record the frame clock of the imaging, onset of photostimulation and a pulse to synchronise imaging and photostimulation with behaviour.
+
+\section{Behavioural training}
+
+Mice were water restricted and given access to \textasciitilde1 ml of water per day. Their weights were recorded and \textit{ad libitum} access to water or wet mash was provided if the animal's weight dropped below 80\% of the pre-restriction weight. For training, mice were head-fixed using their head-plate with their body supported in a 3d printed polylactic acid (PLA) tube. Mice became acclimatised to head-fixation and relaxed in the tube after the first 1-2 sessions. All behavioural training was controlled using the pyControl hardware and software \cite{akam_pycontrol_2021} based around the micropython microcontroller. The pyControl framework acted as the master clock for behaviour by writing the timing of behavioural input and output events to disk and triggering trials and stimuli based on behavioural events.
+
+Mice reported photostimulation by licking a metallic lick spout placed ~5 mm from the tongue using a micromanipulator arm (Noga Engineering). The spout was electrically connected to the pyControl lickometer circuit (Open-ephys), which both recorded licking events and drove a solenoid valve (Lee Products) to deliver a \textasciitilde2 \textmu l water reward.
+
+The general structure of the task and individual trials was consistent at all stages of training. Each trial was separated by a fixed five second inter-trial-interval followed by a 4-6 second lick withhold period, where the length of the lick-withhold period was drawn randomly from a uniform distribution spanning these times. This prevented mice learning temporal structure in the task and eliminated the utility of a strategy based around random high frequency licking. If the mouse licked during the lick-withhold period, the trial was restarted and a new withhold length was drawn from the uniform distribution. 
+
+Two trial types were delivered to the mice. During go trials, photostimulation was delivered and mice were rewarded if they licked to report perception of the stimulus. During catch trials, no photostimulation was delivered and mice were not rewarded if they licked the spout; no punishment was administered for licking on catch trials. 
+
+The 'response period' during which the mouse's licking response was recorded commenced immediately following the end of the lick-withhold period. This coincided with the onset of photostimulation in the case of go trials. The response period lasted for 1 second, and licks during this period alone were used to define the outcome of the trial. If the animal licked during the response period, this was scored as a 'hit'; failure to lick on a go trial was scored as a 'miss'. On catch trials, if the animal licked in the response period, the trial was scored as a 'false positive'; trials where the animal did not lick in this period were scored as a 'correct rejection'. A reward was delivered immediately after a correct lick on hit trials. This behaviour can thus be considered a detection task where catch trials are used to report the animal's baseline licking probability. Trial type was selected pseudorandomly ensuring no more than 3 consecutive trials of the same type. Mice were trained until they ignored 10 consecutive rewards or until 90 minutes had elapsed.
+
+Behavioural performance was quantified using the d' metric \cite{brophy_alternatives_1986} which quantifies the difference in response probability between hit and catch trials while controlling for baseline response rate. This allows for comparison of performance of mice with conservative licking strategies, who are less likely to lick on both go and catch trials, with mice that are more likely to lick on both trial types.
+
+d' is defined as:
+
+\begin{equation}
+d' = z(\text{hit rate}) - z(\text{false alarm rate})
+\end{equation}
+
+where: $z$ is the Z-transform function
+
+The pyControl framework runs micropython, a lower level form of python compared to that available on a desktop computer and without any scientific packages. Hence, to perform calculation of d' online directly on the microcontroller, the Z-transforms of the hit and false alarm rates were calculated using a Pad\'e approximant:
+
+\begin{equation} \label{eq:pade}
+ R_{4,4} = \frac{\sqrt{2\pi}(P - \frac{1}{2}) - \frac{157}{231}\sqrt{2}\pi^{3/2}(P - \frac{1}{2})^{3}}{1-\frac{78}{77}\pi(P-\frac{1}{2})^{2} + \frac{241\pi^{2}}{2310}(P - \frac{1}{2})^{4}}
+\end{equation}
+
+where: $R_{4,4}$ is the 4th order Pad\'e approximation of the Z-transform and $P$ is the hit or miss rate.
+
+\subsection{One-photon behavioural training}
+
+Naive mice initially learned the association between photostimulation and reward through ‘one-photon’ widefield stimulation with a 595 nm LED (Cree). One-photon behavioural training was carried out in closed, light-proofed wooden boxes with the LED placed directly onto the cranial window using a micromanipulator arm (Noga). Current was supplied to the LED using pyControl and a custom designed analog driver board, allowing the power produced by the LED to be controlled programmatically. LED power was calibrated using a power meter (ThorLabs PM100D). A single trial's photostimulation consisted of 5 x 20 ms pulses over a period of 200 ms. LED stimulation was delivered on go trials only.
+
+Initially, mice learned the association between optogenetic stimulation and reward through conditioning in which the stimulus was paired with reward regardless of the animal's response. Rewards that were delivered on miss trials are termed 'auto-rewards' and were delivered at the end of the response period. Mice rapidly learned to associate the optogenetic stimulus with reward and began licking before the auto-reward within 1-2 sessions. Mice were transitioned out of the auto-reward phase and into active training when they scored three consecutive hit trials. During active training, mice were not auto-rewarded aside from for a single trial if they registered 4 consecutive misses; this functioned to motivate poorly performing mice during a session.
+
+During the initial training phase and the first stage requiring active responses,  LED power of 10 mW was used, with mice transitioned to progressively weaker LED powers once their performance was sufficiently high. Online performance was computed using running d', computed across a window of 10 trials. Once animals had reached a running d' of 2, the LED power was reduced in a stepwise fashion until the lowest power (0.1 mw) was reached. Once animals had exceeded criterion at this power, they were considered to have completed the one-photon training paradigm.
+
+\subsection{Two-photon behavioural training}
+
+After learning the one-photon stimulation task, mice were transitioned to the two-photon version of the task, whereby mice responded to two-photon photostimulation targeted to S1 only. Initially mice were trained on a task in which ~150 S1 neurons were photostimulated on every go trial in groups of 50, with an inter-group-interval of 5 ms.  Once mice registered a d' > 1.5 across an entire session, they were transitioned to the main version of the task. This task consisted of three trial types selected pseudorandomly, with equal probability and with no more than three consecutive trials of the same type. On 1/3 of trials, 150 cells were stimulated in groups of three, on 1/3 of trials, cells were stimulated in a single group, with the number of targets stimulated drawn randomly from the set {5,10,20,30,40,50} with equal probability and with replacement, the final 1/3 of trials were catch trials in which no photostimulation was performed. 
+
+Before each session, photoresponsive cells were identified by performing two-photon photostimulation spanning opsin-expressing areas of S1. This generated the coordinates of ~150 S1 neurons known to be responsive to stimulation. The subset of neurons to be stimulated was selected randomly before each trial; cells in each simultaneously stimulated subset were no more than 350 μm apart. 
+
+Prior to active behaviour, 10 minutes of spontaneous imaging was performed without any photostimulation being delivered. During this time period 10 rewards were delivered with an inter-reward-interval of 10 seconds; this allowed us to assess the ‘reward only’ neural response in somatosensory cortex. Active behaviour followed spontaneous imaging, during which the mouse was rewarded only if it responded to a go trial. Neural activity was imaged throughout active behaviour but was stopped every ~15 minutes to ensure the objective lens was completely immersed in water and to monitor animal welfare. The field of view was manually corrected for drift throughout the session by moving the objective to realign the field of view to a marker cell.
+
+White noise was played to the animal throughout the session to mask auditory cues signifying the onset of stimulation and galvanometer mirrors were moved in an identical fashion on both go and catch trials. This ensured that the auditory cues generated were matched on both go and catch trials, and ensured that mice were responding to optical activation of S1 alone. Behavioural events were recorded through pyControl and photostimulation was controlled by custom written routines in Python and C.
+
+
+\section{Imaging Data analysis}
+
+Online analysis carried out during an experiment was conducted using STAMovieMaker (https://github.com/llerussell/STAMovieMaker). These stimulus triggered average (STA) images displayed visually the change in activity of each pixel in the field of view post-stimulus relative to pre-stimulus, thus the pixel intensity of the image was proportional to the increase in activity driven by photostimulation. STA images were trial averaged in a group-wise fashion and colored, such that pixels of a given color represent the average activity driven by repeated photostimulation of a given group of neurons. These images were used to manually define the coordinates of cells in S1 responsive to optical stimulation.
+
+All further analysis was conducted offline. Calcium imaging movies were processed using Suite2p103 and regions of interest (ROIs) corresponding to putative cell somata were manually selected. Suite2p also extracts a signal arising from the neuropil surrounding a cell body. To remove contamination of the signal arising from individual soma by the surrounding neuropil, we subtracted the neuropil signal from each cell body at each timepoint (t) according to the equation:
+
+\begin{equation} \label{eq:neuropil_sub}
+F(t) = F_{soma}(t) - F_{neuropil}(t) \times 0.7
+\end{equation}
+
+where: \newline
+$F$ = neuropil subtracted fluorescence \newline
+$F_{soma}$ = fluorescence from the cell's soma \newline
+$F_{neuropil}$ = fluorescence from the cell's surrounding neuropil \newline
+0.7 = neuropil coefficient \cite{chen_ultrasensitive_2013} \newline
+
+To ensure that cells with a bright baseline did not dominate the analysis, we computed $\Delta F/F$ for each cell using the equation:
+
+\begin{equation} \label{eq:dff}
+\Delta F/F = (F  - \Bar{F}) / \Bar{F}
+\end{equation}
+
+where: \newline
+$\Bar{F}$ = The mean of $F$ across time through the entire session
+
+Cells with very high $\Delta F/F$ values ($max(\Delta F / F) > 10 $) were discarded from further analysis.
+
+Imaging data was split into individual trials, defined as 2 seconds preceding and 8 seconds proceeding the onset of a trial. Frames occuring while the photostimulation laser was on were excluded due to artifactual crosstalk in the imaging channel. Trial onset was defined either as the onset of photostimulation in the case of go trials, the onset of galvo spiralling in the case of catch trials or the delivery of reward in the case of reward only trials. 
+
+Neurons were defined as ‘targeted’ on an individual trial if any part of their cell body was located within 15 μm of the centre of the photostimulus beamlet. Neurons were categorised as responsive or unresponsive to stimulus or reward in a trial-wise manner. For each trial, the distribution of $\Delta F/F$ values 500 ms pre-stimulus were compared to 500 ms post-stimulus for each cell. A cell was deemed as responsive to a stimulus on an individual trial if it passed a significance threshold of p = 0.05, using a two-sided Wilcoxon signed-rank test, following false discovery rate (FDR) correction. The alpha of the FDR correction (0.015) was set empirically as the value which yielded ~5\% of cells responding on correct rejection trials, where there was no stimulation or licking response. Following significance testing, cells were split into positive and negative responders based on whether the mean $\Delta F/F$ value post-stimulus was greater or less than the mean $\Delta F/F$ value pre-stimulus respectively.
+
+\section{Pre-stimulus population metrics}
+
+All pre-stimulus population metrics were computed across a 500 ms period immediately prior to photostimulation. All metrics were calculated on a trial-wise basis. The natural logarithm was taken of metrics that were fit better by a log-normal distribution as opposed to a normal distribution as assessed by Kullback-Leibler divergence. 
+
+Mean population activity was computed by first averaging $\Delta F/F$ activity across all pre-stimulus frames for each neuron to yield a vector containing a scalar value for each neuron defining its pre-stimulus activity. Next firing rates were averaged across all neurons to give a single scalar value for each trial, defining the average population activity. 
+
+Population variance was computed in a similar fashion, first by averaging across all pre-stimulus frames for each neuron. However rather than taking the mean of the activity vector as above, the variance of the vector was used to generate a single scalar value for each trial.
+
+Mean pairwise correlation was computed by calculating the cross-correlation matrix for all pairs of neurons, whereby element i,j in this matrix was the Pearson correlation between neuron i and neuron j across all pre-stimulus frames. A single scalar value was generated for each trial by taking the absolute value of each element in the matrix, then computing the mean across all off-diagonal elements of this matrix.
+
+
+\section{Normalisation and sorting of post-stimulus neural activity}
+
+Post-stimulus neural activity was baselined relative to pre-stimulus activity in order to assess the relative change in activity after the photostimulation period, and to compare this change across cells and trials. On each trial, for each individual cell, the average $\Delta F/F$ activity in the 2 seconds preceding the photostimulation was subtracted from the post-stimulus activity trace. Neurons were sorted for visual clarity only (in Fig. HELLO FIX ME), using the sum of the post-stimulus $\Delta F/F$ activity on hit, miss and reward only trials. This yields a sorting from strongly inhibited to strongly excited cells. 
+
+
+\section{Logistic regression classifiers}
+
+The dynamic decoding classifiers of Figure 3 used a logistic regression model with an L2 penalty term to the weights with a regularisation strength of 1. The Scikit-learn implementation of logistic regression was used \cite{pedregosa_scikit-learn_2012}. Classification accuracy was computed on a session-wise basis and then averaged across sessions, with error bars showing the 95\% confidence interval of performance across sessions. Trials of the majority trial type class were randomly subsampled to adjust for sessions in which there was an unequal number of different trial types and ensure that models were not biased to a major or minor class. (This meant that the reward only / correct rejection classifier could only use 10 trials: the number of reward only trials. To ensure that this low number of trials did not underlie the difference in performance with the hit / correct rejection classifier, we also trained a hit / correct rejection decoder using 10 trials only (Supplementary figure FIX ME 4g, h, hit predictions are significantly greater than reward only predictions on 94/110 post-stimulus time points in S1 and 46/110 post-stimulus time points in S2). Each model was trained to classify the probability that a trial belonged to one of two different trial types. A 3:1 train:test split was employed and model performance was assessed on held out test trials only. 4-fold cross validation was used on each session, with a new model trained for each fold, and classification accuracy is reported as the average of the test data across folds, meaning all trials were in the the held-out test set for one single fold. A new model was trained from scratch for each imaging frame within a trial, hence the training data consisted of a vector containing a single scalar $\Delta F/F$ value for each cell of all trials on a given frame.
+
+Significance of decoding predictions was assessed by two-sided Wilcoxon signed-rank tests, where the predicted classification was compared to chance level (= 0.5). Predictions were binned per 2 time points, such that each test consisted of 20 (2 time points x 10 sessions) paired samples (prediction and the constant chance level). Predictions were said to be significant if their p value was below 0.05, Bonferroni corrected for the number of tests performed per trial type (167, both the pre-stimulus and post-stimulus activity excluding the photostimulation artifact). The binning of 2 time points was used because single time point statistics had too little data to be significant given the strong Bonferroni correction. Hence we chose the smallest bin size through which it was mathematically possible to yield significant p values. Significant time points are indicated in Fig. HELLO 3 and Supplementary Fig. 4,5 by thick lines, coloured by the trial type they refer to, at the top of each panel. To quantify the difference between predictions of two trial types, the same tests were performed comparing the two trial type predictions directly.
+
+
+\section{Behavioural data analysis}
+
+As imaging was stopped intermittently, neural activity was not recorded for every trial performed by the animal; trials that were not imaged were excluded from all analysis. Hit trials in which the animal licked with an exceptionally short-latency (<250 ms) are likely to have been driven by random licking rather than perception of the stimulus and were thus marked as 'too-soon' and not included in further analysis. The threshold of 250 ms was selected by inspecting the lick distribution on hit trials, in which lick frequency increased above baseline rate after 250 ms. 
+
+Psychometric curves were fit to behavioural data by computing the value of d’ separately for trials in which a given number of cells was stimulated. This was achieved by comparing the hit rate for a given number of cells stimulated to the false positive rate across all catch trials. Data was fit using a logistic function adjusted to fit both negative and positive values. Sessions were discarded if behaviour was not well described by a psychometric function, whereby behavioural performance improved with a greater number of neurons photostimulated. Sessions were also discarded if behavioural performance was poor, where d' for trials on which 150 cells were stimulated was less than 0.95 and/or d' for trials on which 40 and 50 cells were stimulated was less than 0.5.
+
+\section{Statistical procedures}
+We did not use statistical methods to determine sample size and no randomisation or blinding was used. Unless otherwise stated, paired non-parametric tests were employed and a p value of 0.05 was used as a threshold for significance throughout. Multiple comparisons corrections were applied using the Bonferroni correction unless otherwise stated. Error bars show 95\% confidence interval unless otherwise stated.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
