@@ -58,30 +58,40 @@ Next, we explicitly quantified the balance between excitation and inhibition (E/
 Individual cells display a diverse array of responses, and balanced mean average responses mask the magnitude and time course of propagated activity (Fig. 2). To gain insight into these complex neural responses, we employed logistic regression classifiers on the network level and assessed propagation of stimulus-relevant activity and its relationship to behaviour. We trained classifiers to decode the trial type of individual trials using the activity of all cells in S1 or S2 on imaging data from single imaging frames. This allowed us to uncover the neural signatures of each trial type in both brain regions and quantify the temporal dynamics of this signature. First, we trained a model to classify hit trials from correct rejection trials, meaning the model should detect the neural signature of both the stimulus and the activity resulting in its perception. The classifier performed significantly above chance after stimulation and performance remained well above chance for several seconds both in S1 and S2 (two-sided Wilcoxon signed-rank test, p < 0.05, Bonferroni corrected) (Fig. 3a left, 3b left; Supplementary Fig. 4a,b,g,h; Supplementary Fig. 5a left, b left). Therefore, the neural activity underpinning perceived stimulation persisted both locally in S1 and downstream in S2 for several seconds. However, the classifier could be decoding the signatures of reward and the motor command required for licking, which are present on hit trials but not correct rejection trials. To address this, we tested the pre-trained classifier on reward only trials in which reward was delivered in the absence of photostimulation. In S1, performance on this trial type was either below or at chance level (p < 0.05, Bonferroni corrected); in S2, classifier performance on reward only trials remained at chance throughout the first 2.7 seconds of the trial (Fig. 3a left, 3b left; Supplementary Fig. 4a,b,g,h; Supplementary Fig. 5a left, b left) (p < 0.05, Bonferroni corrected). 
 
 
-\begin{figure}[h]
-\hspace*{-0.6in}
-\includegraphics[scale=0.45]{figures/Figure3.pdf}
-\caption[\textbf{Perceived photostimuli elicit persistent activity in both S1 and S2 populations
-}]{\textbf{Figure 3: Perceived photostimuli elicit persistent activity in both S1 and S2 populations} Dynamic decoding of trial type from neural activity in S1 using a logistic regression model. Models were trained on each frame individually, with activity from every cell in S1 or S2, and tested on held out data. Coloured bars above the traces show timepoints at which classifier performance was significantly different from chance (see methods).
+\begin{figure}[!h]
+\hspace*{-0.2in}
+\includegraphics[scale=0.76]{figures/Figure3.pdf}
+\caption[\textbf{Perceived photostimuli elicit persistent activity in both S1 and S2 populations.
+}]{\textbf{Perceived photostimuli elicit persistent activity in both S1 and S2 populations} Dynamic decoding of trial type from neural activity in S1 using a logistic regression model. Models were trained on each frame individually, with activity from every cell in S1 or S2, and tested on held out data. Coloured bars above the traces show timepoints at which classifier performance was significantly different from chance (see methods).
 \textbf{(A)} \textit{Left}: A model was trained on S1 activity to classify hit trials from correct rejection trials and then tested on hit trials (green), correct rejection trials (yellow) and reward only trials (blue). The model is able to classify hit trials from correct rejection trials for several seconds following photostimulation, implying that activity arising from perceived stimulation persists in S1. Reward only trials were not classified as hits, showing that the model was not just trained to decode the neural signature of reward on hit trials. \textit{Right}: A model was trained on S1 activity to classify miss trials from correct rejection trials and then tested on miss trials (red) and correct rejection trials (yellow). The model is able to distinguish the two trial types for only for ~1 second following stimulation. This implies that non-perceived stimuli do not generate persistent activity. \textbf{(B)} \textit{Left}: A model was trained on S2 activity to classify hit trials from correct rejection trials and then tested on hit trials (green), correct rejection trials (yellow) and reward only trials (blue). As above, the model is able to classify hit trials from correct rejection trials for several seconds following photostimulation, implying that activity arising from perceived stimulation in S1 is propagated to S2 and persists for several seconds. Reward only trials were not classified as hits, indicating that the model was not just detecting the neural signature of reward on hit trials. \textit{Right}: A model was trained on S2 activity to classify miss trials from correct rejection trials and then tested on miss trials (red) and correct rejection trials (yellow). The model was not able to classify miss from correct rejection trials at any timepoint, indicating that non-perceived stimuli were not robustly propagated from S1 to S2.
-
-
-
-
-
 } 
 \label{fig:fig3}
 \end{figure}
 
-
-
-
-
-
-
 As reward signals in the brain are complex, and depend on whether the reward is expected or unexpected41, we confirmed that the reward signal on hit trials and reward only trials was comparable, thus ensuring that the hit vs correct rejection classifier was indeed classifying the neural signature of perceived stimulation and not just reward. This is critical as the water reward on hit trials was expected, but not expected on reward only trials. We addressed this by training a model to classify reward only trials from correct rejection trials, thus this classifier should detect only the neural signal from rewards (Supplementary Fig. 4e,f). Testing this model on hit trials resulted in identical performance to the reward only condition both in S1 and S2 (no significant difference on 110/110 time points in S1 and 108/110 time points in S2). This means that a classifier trained specifically to detect rewards could not distinguish hit and reward only trials, meaning that the neural response to reward is comparable in both trial types and the classification of hit trials from correct rejection trials is indeed decoding the neural signature of perceived stimulation, both in S1 and S2.
 
+
+\begin{figure}[h]
+\vspace*{-3cm}
+\thisfloatpagestyle{empty}
+% \hspace*{-0.2in}
+\vspace*{-0.2cm}
+\includegraphics[scale=0.7]{figures/supplements/Supplementary_Figure4.pdf}
+\caption[\textbf{Dynamic decoders of all trial types}]{\textbf{Dynamic decoders of all trial types} 
+
+Dynamic decoding of trial type from neural activity in S1 using a logistic regression model. Models were trained on each frame individually, with activity from every cell in S1 or S2, and tested on held out data. Coloured bars above the traces show timepoints at which classifier performance was significantly different from chance (see methods). \textbf{(A)} A model was trained on S1 activity to classify hit trials from correct rejection trials and then tested on hit trials (green), correct rejection trials (yellow), reward only trials (dark blue), false positive trials (light blue) and miss trials (red). \textbf{(B)} As above, but trained on S2 activity. \textbf{(C)} A model was trained on S1 activity to classify miss trials from correct rejection trials and then tested on miss trials (red), correct rejection trials (yellow) reward only trials (dark blue), false positive trials (light blue) and hit trials (green). \textbf{(D)} As above, but trained on S2 activity. \textbf{(E)} A model was trained on S1 activity to classify reward only trials from correct rejection trials and then tested on reward only (dark blue), correct rejection trials (yellow), miss trials (red), false positive trials (light blue) and hit trials (green).\textbf{(F)} As above, but trained on S2 activity. \textbf{(G)} As \textbf{(A)} but the number of trials was restricted to 10 for each type, matching the total number of reward only trials recorded. \textbf{(H)} As \textbf{(B)} but the number of trials was restricted to 10 for each type, matching the total number of reward only trials recorded.
+} 
+\label{fig:supp4}
+\end{figure}
+
 Next we asked whether non-perceived neural activity was reliably propagated from S1 to S2 by training a model to classify miss and correct rejection trials (Fig. 3a right, 3b right; Supplementary Fig. 4c,d; Supplementary Fig. 5a right 5b right). We found that in S1, this model decoded miss trials slightly above chance immediately following stimulation (p < 0.05, Bonferroni corrected), however performance rapidly decayed back to chance level after ~1 second. Conversely in S2, the model did not perform above chance at any point in time, indicating that stimulus information that is not perceived does not propagate to S2.
+
+
+
+
+
+
+
 
 Taken together, these results show that only perceived stimulus representations are reliably propagated out of the local brain region in which they originate to a downstream brain area. Further, stimuli that are propagated and drive perception persist both locally and downstream for several seconds following the initial injection of activity.
 
