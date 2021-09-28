@@ -68,6 +68,14 @@ Individual cells display a diverse array of responses, and balanced mean average
 \label{fig:fig3}
 \end{figure}
 
+\begin{figure}[!h]
+\hspace*{-0.2in}
+\includegraphics[scale=0.76]{figures/supplements/Supplementary_Figure5.pdf}
+\caption[\textbf{Dynamic decoders of individual sessions}]{\textbf{Dynamic decoders of individual sessions} As figure \ref{fig:fig3}, but displaying classifier performance for each individual sessions. Individual sessions are shown as more transparent lines, with the session average as a fully opaque line.
+} 
+\label{fig:supp5}
+\end{figure}
+
 As reward signals in the brain are complex, and depend on whether the reward is expected or unexpected41, we confirmed that the reward signal on hit trials and reward only trials was comparable, thus ensuring that the hit vs correct rejection classifier was indeed classifying the neural signature of perceived stimulation and not just reward. This is critical as the water reward on hit trials was expected, but not expected on reward only trials. We addressed this by training a model to classify reward only trials from correct rejection trials, thus this classifier should detect only the neural signal from rewards (Supplementary Fig. 4e,f). Testing this model on hit trials resulted in identical performance to the reward only condition both in S1 and S2 (no significant difference on 110/110 time points in S1 and 108/110 time points in S2). This means that a classifier trained specifically to detect rewards could not distinguish hit and reward only trials, meaning that the neural response to reward is comparable in both trial types and the classification of hit trials from correct rejection trials is indeed decoding the neural signature of perceived stimulation, both in S1 and S2.
 
 
@@ -86,16 +94,43 @@ Dynamic decoding of trial type from neural activity in S1 using a logistic regre
 
 Next we asked whether non-perceived neural activity was reliably propagated from S1 to S2 by training a model to classify miss and correct rejection trials (Fig. 3a right, 3b right; Supplementary Fig. 4c,d; Supplementary Fig. 5a right 5b right). We found that in S1, this model decoded miss trials slightly above chance immediately following stimulation (p < 0.05, Bonferroni corrected), however performance rapidly decayed back to chance level after ~1 second. Conversely in S2, the model did not perform above chance at any point in time, indicating that stimulus information that is not perceived does not propagate to S2.
 
-
-
-
-
-
-
-
 Taken together, these results show that only perceived stimulus representations are reliably propagated out of the local brain region in which they originate to a downstream brain area. Further, stimuli that are propagated and drive perception persist both locally and downstream for several seconds following the initial injection of activity.
 
 
+\section{Pre-stimulus population in S1 predicts the upcoming trial outcome}
+
+To address the conditions facilitating both the propagation of activity to S2 and the behavioural response to stimulus, we measured population activity in S1 immediately prior to stimulation (Fig. 4a) and asked whether any statistic of the pre-stimulus population activity could predict whether the stimulus would be perceived (i.e. whether the upcoming trial type would be a hit or a miss) (see methods). This allows us to assess how population activity is formatted pre-stimulus to gate whether the upcoming stimulation propagates and thus drives perception. One basic measure of population activity is the mean, measuring whether raised or suppressed activity across S1 prior to the stimulus arriving is predictive of an upcoming hit or miss trial. We find no evidence that this metric pre-stimulus is predictive of trial type (Fig. 4.b left) (n.s.). Likewise, we find no evidence that the mean pairwise correlation between all pairs of neurons in S1 pre-stimulus increases or decreases the likelihood of stimulus detection (Fig. 4.b center) (n.s.). 
+
+
+\begin{figure}[h!]
+\vspace*{-1.5cm}
+\thisfloatpagestyle{empty}
+\hspace*{-0.4in}
+% \vspace*{-0cm}
+\includegraphics[scale=1.08]{figures/Figure4.pdf}
+\caption[\textbf{Pre-stimulus population in S1 predicts the upcoming trial outcome}]{\textbf{Pre-stimulus population in S1 predicts the upcoming trial outcome} 
+
+\textbf{(A)} Illustration of neural activity throughout a trial. Only the activity before the stimulus on a given trial is included in subsequent plots. We considered 3 metrics of pre-stimulus neural activity; the population mean, population variance and the average absolute correlation coefficient. \textbf{(B)} Comparison of population metrics of pre-stimulus S1 activity prior to hit trials and prior to miss trials. \textit{Left}: No evidence that mean population activity pre-stimulus predicts the upcoming trial outcome. \textit{Center}: No evidence that pre-stimulus pairwise Pearson correlation, averaged across all pairs of neurons, predicts upcoming trial outcome. \textit{Right}: Population variance is significantly higher before miss trials than before hit trials. Pre-stimulus population metrics in S1 were computed trial-wise and z-scored across trials within a session before being split into hit and miss trials and averaged across a session. P values tested for a difference in session-wise population metrics between hit and miss trials. \textbf{(C)} Population variance is significantly correlated between S1 and S2 on a single-trial level. \textbf{(D)} The probability of a hit trial as a function of pre-stimulus population variance in S1 on a single session level. Trials within a session were binned by their z-scored population variance and this was correlated to the probability of a hit trial within that bin. 8/10 sessions show a significant negative correlation between pre-stimulus population variance and the probability of a hit. \textbf{(E)} The interaction between pre-stimulus population variance in S1 and the number of cells photostimulated defines the probability of a hit trial. Trials within a session were binned by their z-scored population variance and by the number of cells photostimulated; the probability of a hit within each bin was plotted on a 2-dimensional axis. This was repeated for all sessions. Maximising the number of cells stimulated and minimising the pre-stimulus variance yielded the greatest probability of a hit trial. \textbf{(F)} Maximising the SNR of the stimulus resulted in the maximal probability of a hit trial. Data as in f, but projected onto the ‘SNR’ axis by averaging across all bins that project orthogonally onto each point on the axis. (g) Schematic outlining the intuition for the SNR axis. Increasing the number of cells stimulated on a given trial maximises the signal of that stimulus. Noise is inversely proportional to the population variance as there is more excitation and suppression from baseline in a population with high variance. The probability of hit is maximal when SNR is maximal as the stimulus is more likely to be detected above ongoing activity. 
+} 
+\label{fig:figure4}
+\end{figure}
+
+One metric that clearly predicts whether the upcoming stimulus will be propagated out of S1 to drive a hit is the population variance (Fig. 4.b right), defined as the variance of the distribution of activity across S1 neurons. The lower the variance of the activity distribution pre-stimulus, the more likely the upcoming trial will be a hit. Prior to a miss trial, the variance of activity across neurons is greater than prior to a hit trial (p < 0.002). See Supplementary Fig. 6 for the further quantification of significant activity metrics of both S1 and S2.  Additionally, population variance in S1 is correlated to population variance in S2, (Fig. 4c) (Pearson’s r = 0.53, p < 5x10-85) demonstrating that this phenomenon is not just limited to the directly photostimulated brain region and therefore may be a metric of a more global brain state.
+
+
+\begin{figure}[h!]
+\vspace*{-1.5cm}
+\thisfloatpagestyle{empty}
+\hspace*{-0.6in}
+% \vspace*{-0cm}
+\includegraphics[scale=0.48]{figures/supplements/Supplementary_Figure6.pdf}
+\caption[\textbf{Further population metrics of pre-stimulus activity
+}]{\textbf{Further population metrics of pre-stimulus activity
+} 
+Comparison of population metrics of pre-stimulus in  S1 \textbf{(A)} and S2 \textbf{(B)} activity prior to hit trials and prior to miss trials. The top rows show the 3 metrics of Figure 4b. The middle rows show metrics computed using Principal Component Analysis (PCA)95: the relative explained variance of the first Principal Components (PC), the number of PCs required for 90\% cumulative explained variance, and the number of PCs required for 95\% explained variance96. These are all metrics that indicate how well-structured, or low-dimensional, the covariance matrix is of the neural activity. These metrics are not significant which indicates that the change in population variance is not due a change in covariance structure. The bottom rows show two significant task variables; the trial number (an integer between 0 and the total number of trials in a session, indicating the number of trials previously undertaken by the animal in a given session) and the reward history (defined as \% hit trials in the 5 preceding stimulated trials). \textbf{(C,D)} The co-variability of the significant statistics of panels a and b was assessed using Pearson correlation. Reward history and trial number are strongly correlated, while population variance is significant but weakly correlated to trial number in S1 and both reward history and trial number in S2. 
+} 
+\label{fig:supp6}
+\end{figure}
 
 
 
@@ -108,7 +143,6 @@ Taken together, these results show that only perceived stimulus representations 
 
 
 
+The relationship between population variance and behavioural performance was also evident on an individual session level, whereby population variance pre-stimulus in S1 is negatively correlated with the probability that the upcoming stimulus elicits a hit (Fig. 4d) (one-sided regression test p < 3x10-12 on 8/10 sessions, 1 session n.s., 1 session significantly increasing). This result, taken in conjunction with Figure 1.f, shows that we have identified two separate conditions that predict the probability that the animal will successfully perceive the stimulus: the strength of the stimulus (number of cells stimulated), and the variance of the population activity (Fig. 4b,d). Next we asked if these two predictors work in tandem, where stimulus perception depends on both the strength of the stimulus and the ongoing state of the population.
 
-
-\section{Stimulus signal-to-noise ratio}
-
+We find a clear interaction in which the probability of a stimulus eliciting a hit can be expressed on a two-dimensional axis (Fig. 4e), where hit probability is highest when population variance is minimised and the number of cells stimulated is maximised. Stimulating just 5-10 neurons elicited a hit probability of greater than chance level (0.5) when pre-stimulus population variance was at its lowest level, whereas as population variance increased, more stimulated cells were required to reliably drive hits. This phenomenon can be well conceptualised in terms of a signal-to-noise ratio (SNR) framework, in which activity injected into cells through photostimulation forms the signal and the magnitude of background noise is measured as population variance. The higher the SNR, the more likely the animal is to detect the signal above ongoing noise and respond through a hit trial. Indeed, the probability of a hit is highly correlated with SNR when population variance and the number of cells stimulated are collapsed onto an SNR axis (Fig. 4f) (p< 2x10-10, logistic regression two-sided t test). Taken together, these results show that the SNR of an incoming stimulus may be critical for its continued propagation out of the local brain region where it was initiated to downstream regions where it can drive behaviour (Fig. 4g).
