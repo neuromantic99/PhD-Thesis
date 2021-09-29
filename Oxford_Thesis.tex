@@ -34,6 +34,12 @@
 
 % Newlines lead to a paragraph break, not just an indentation
 \usepackage[parfill]{parskip}
+\usepackage{tocloft}
+
+% This is needed for the spacing of the content page cos
+% i screwed up the roman numerals etc
+\setlength{\cftbeforesecskip}{-1pt}
+
 
 
 % Note: use this link https://greasyfork.org/en/scripts/390507-overleaf-editor-map-j-to-gj-and-k-to-gk
@@ -185,6 +191,11 @@ Optical control of neocortical circuits to probe how connectivity influences beh
 	\input{text/abstract}
 \end{abstract}
 
+%%%%% ABSTRACT -- Nothing to do here except comment out if you don't want it.
+\begin{Summary of contributions}
+	\input{text/summary-cont}
+\end{Summary of contributions}
+
 %%%%% MINI TABLES
 % This lays the groundwork for per-chapter, mini tables of contents.  Comment the following line
 % (and remove \minitoc from the chapter files) if you don't want this.  Un-comment either of the
@@ -201,6 +212,7 @@ Optical control of neocortical circuits to probe how connectivity influences beh
 
 % \renewcommand{\baselinestretch}{0.75}\normalsize
 \tableofcontents
+\newpage
 % \renewcommand{\baselinestretch}{1.0}\normalsize
 
 
@@ -253,10 +265,10 @@ Optical control of neocortical circuits to probe how connectivity influences beh
 
 % \setlength{\baselineskip}{0pt} % JEM: Single-space References
 
-{\renewcommand*\MakeUppercase[1]{#1}%
-\printbibliography[heading=bibintoc,title={\bibtitle}]}
+% {\renewcommand*\MakeUppercase[1]{#1}%
+% \printbibliography[heading=bibintoc,title={\bibtitle}]}
 
 % \bibliographystyle{plain}
-% \printbibliography
+\printbibliography
 
 \end{document}
